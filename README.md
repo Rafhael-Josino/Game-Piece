@@ -1,0 +1,1 @@
+Generic game piece or vacant space object in javascript, which has its cordinates (i,j) from the index in the list (the game's table) and functions that returns differents types of neighbors (all, ortogonal, diagonal...)
