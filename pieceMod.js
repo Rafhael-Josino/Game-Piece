@@ -54,7 +54,8 @@ const Piece = function(index, sizeX, sizeY, state) {
 		// If the object is on the first line or on the last column
 		if (!this.i || this.j === (sizeX - 1)) return neighbors;
 		else {
-			
+			//const numbOfNeig = Math.min(this.i, );
+			//for (let n = 1; n < Math.	
 		}
 	}
 	
