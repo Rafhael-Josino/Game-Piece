@@ -1,5 +1,4 @@
-// Generical piece module
-// Each object has a pos property
+// Generic game piece/space module
 
 const Piece = function(index, sizeX, sizeY, state) {
     this.i = Math.floor(index / sizeY);
@@ -41,12 +40,27 @@ const Piece = function(index, sizeX, sizeY, state) {
 		// If the object is on the first line, there is no upside neighbors
 		if (!this.i) return neighbors;
 		else {
+			// The loop goes upside down
 			for (let i = Math.max(0, this.i - range); i < this.i; i++) {
 				neighbors.push(table[this.j + i * sizeX]);
 			}
 		}
-
+		return neighbors;
 	}
+
+	this.findDownNeig = (table, range) => {
+		let neighbors = [];
+		// If the object is on the first line, there is no upside neighbors
+		if (this.i === sizeY - 1) return neighbors;
+		else {
+			// The loop goes downside up
+			for (let i = Math.min(sizeY - 1, this.i + range); i > this.i; i--) {
+				neighbors.push(table[this.j + i * sizeX]);
+			}
+		}
+		return neighbors;
+	}
+
 	// Test and do the other ortogonal directions
 	// Diagonal quadrant nº 1
 	this.findD1Neig = (table, range) => {
@@ -54,8 +68,11 @@ const Piece = function(index, sizeX, sizeY, state) {
 		// If the object is on the first line or on the last column
 		if (!this.i || this.j === (sizeX - 1)) return neighbors;
 		else {
-			//const numbOfNeig = Math.min(this.i, );
-			//for (let n = 1; n < Math.	
+			const maxNeig = Math.min(this.i, sizeX-1 - this.j);
+			for (let n = 1; n <= Math.min(range, maxNeig); n++) {
+				neighbors.push(table[this.j + n + sizeX * (this.i - n)]);
+			}
+			return neighbors;
 		}
 	}
 	
